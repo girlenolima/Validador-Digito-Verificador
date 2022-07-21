@@ -4,25 +4,28 @@ import java.util.ArrayList;
 
 public class CalculadoraDV {
 
-    private static final int FACTOR_11_MUL = 10;
-    private static final int FACTOR_10_REST = 11;
+    private static final int FACTOR_10_MUL = 10;
+    private static final int FACTOR_11_REST = 11;
     private static final int WEIGHTS[] = {5, 4, 3, 2};
 
-    public String calcularAgenciaDV(int... input) {
+   public int calcularAgenciaDV(int... input) {
 
-        String mess;
-        Integer result = 0;
-        if (input.length < 4) {
-            return mess = "Qtd digitos inferior a 4";
+        int mess;
+
+        if (input.length == 4) {
+
+            int soma = IntStream.range(0, 4)
+                    .map(i -> WEIGHTS[i] * input[i] * 10 % 11)
+                    .sum();
+     
+           // soma *= FACTOR_10_MUL;
+           //soma %= FACTOR_11_REST;
+
+            return soma;
+
         } else {
-            for (int i = 0; i < input.length; i++) {
-                result += input[i] * WEIGHTS[i];
-            }
-            result *= FACTOR_11_MUL;
-            result %= FACTOR_10_REST;
+            return mess = -1;
         }
-
-        return mess = result.toString();
 
     }
 
